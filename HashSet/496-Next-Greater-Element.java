@@ -33,3 +33,25 @@ class Solution {
         return ans;
     }
 }
+
+**************************************************************************************************************************
+    //optimal approach
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] map = new int[10001];
+        for(int i=0 ;i < nums2.length ;i++){
+            map[nums2[i]]=i;
+        }
+        for(int i=0 ;i < nums1.length ;i++){
+            nums1[i] = find(map[nums1[i]] , nums2);
+        }
+        return nums1;
+    }
+    private int find(int idx , int nums2[]){
+        int num=nums2[idx];
+        for(int i=idx+1 ; i<nums2.length ;i++){
+            if(nums2[i] > num) return nums2[i];
+        }
+        return -1;
+    }
+}
