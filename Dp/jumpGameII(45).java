@@ -23,3 +23,22 @@ class Solution {
         return dp[idx];
     }
 }
+//***********************************************************(optimal approach)*****************************************************************************
+//time complexity:O(n)
+//space complexity:O(1)
+
+class Solution {
+    public int jump(int[] nums) {
+        int start=0 , range=0 , jumps=0;
+        while(range < nums.length-1){
+            int farthest=0;
+            for(int i=start ;i<=range ;i++){
+                farthest=Math.max(farthest , i+nums[i]);
+            }
+            start=range+1;
+            range=farthest;
+            jumps++;
+        }
+        return jumps;
+    }
+}
