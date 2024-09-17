@@ -16,9 +16,10 @@ class Solution {
         //after calling above fuctn we get all modes with their parent;
 
         HashMap<TreeNode , Boolean> visited=new HashMap<>();
-        Queue<TreeNode>q=new LinkedList<>();
-        q.offer(target);
         visited.put(target ,true);
+        Queue<TreeNode> q=new LinkedList<>();
+        q.offer(target);
+
         int curr_level=0;
         while(!q.isEmpty()){
             int level=q.size();
@@ -27,15 +28,15 @@ class Solution {
 
             for(int i=0 ;i< level; i++){
                 TreeNode node=q.poll();
-                if(node.left!=null && !visited.getOrDefault(node.left, false)){
+                if(node.left!=null && visited.get(node.left)==null){
                     q.offer(node.left);
                     visited.put(node.left , true);
                 }
-                if(node.right!=null && !visited.getOrDefault(node.right, false)){
+                if(node.right!=null && visited.get(node.right)==null){
                     q.offer(node.right);
                     visited.put(node.right , true);
                 }
-                if(parent.get(node)!=null && !visited.getOrDefault(parent.get(node), false)){
+                if(parent.get(node)!=null && visited.get(parent.get(node))==null){
                     q.offer(parent.get(node));
                     visited.put(parent.get(node),true);
                 }
@@ -43,24 +44,24 @@ class Solution {
         }
         List<Integer> ans=new ArrayList<>();
         while(!q.isEmpty()){
-            ans.add(q.poll().val);
+            TreeNode help=q.poll();
+            ans.add(help.val);
         }
         return ans;
 
     }
     public void getParentNode(TreeNode root , HashMap<TreeNode , TreeNode>parent){
-        if(root==null) return;
         Queue<TreeNode> q=new LinkedList<>();
         q.offer(root);
         while(!q.isEmpty()){
             TreeNode curr=q.poll();
-            if(root.left!=null){
-                q.offer(root.left);
-                parent.put(root.left , root);
+            if(curr.left!=null){
+                q.offer(curr.left);
+                parent.put(curr.left , curr);
             }
-            if(root.right!=null){
-                q.offer(root.right);
-                parent.put(root.right , root);
+            if(curr.right!=null){
+                q.offer(curr.right);
+                parent.put(curr.right , curr);
             }
         }
     }
