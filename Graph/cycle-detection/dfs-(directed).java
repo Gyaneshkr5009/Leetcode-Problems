@@ -3,7 +3,7 @@ class Solution {
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
         if(adj.size()==0) return false;
         boolean[] visited=new boolean[V];
-        boolean[] pathVis=new boolean[V];
+        boolean[] pathVis=new boolean[V]; // to check the path is visited on not
         
         for(int i=0 ;i< V;i++){
             if(visited[i]==false){
