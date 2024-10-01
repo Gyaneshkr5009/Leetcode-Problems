@@ -1,3 +1,12 @@
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
+
+/*approach =>   DFS Traversal: Use Depth-First Search (DFS) to explore the graph while tracking visited nodes.
+                Parent Tracking: Maintain the parent node during DFS to avoid backtracking and mistakenly detecting a cycle.
+                Cycle Detection: If a visited node is encountered and it’s not the parent, a cycle exists.
+                Visited Array: Ensure all nodes are checked by initializing and updating a visited array to avoid revisiting nodes.
+*/
+//*************************************************************************************************************************************
 class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
