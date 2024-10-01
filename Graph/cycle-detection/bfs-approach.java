@@ -1,3 +1,13 @@
+/* approach=>
+        BFS with Parent Tracking: Use BFS to explore the graph while tracking the parent node for each visited node to prevent backtracking.
+        Queue-Based Cycle Detection: Process nodes level-by-level with a queue, and if a visited node is found that is not the parent, a cycle is detected.
+        Visited Array: Maintain a boolean visited array to track visited nodes and avoid revisiting them.
+        Cycle Condition: A cycle is confirmed if a node is revisited during BFS, excluding its parent.
+*/
+
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
+//********************************************************************************************************************************************
 class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
