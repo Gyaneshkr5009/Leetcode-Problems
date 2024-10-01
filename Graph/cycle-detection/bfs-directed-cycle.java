@@ -1,3 +1,12 @@
+/*
+        Topological Sort (Kahn's Algorithm): Use BFS to perform topological sorting, where nodes with zero in-degree are processed first.
+        In-degree Calculation: Calculate the in-degree of each node (number of incoming edges).
+        Cycle Detection Condition: If the number of processed nodes (in topological order) is less than the total number of vertices, a cycle exists.
+        Queue Processing: Continuously reduce in-degrees and add nodes with zero in-degree to the queue.
+*/
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
+//*******************************************************************************************************************************
 class Solution {
     // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
