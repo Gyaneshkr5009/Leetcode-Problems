@@ -1,4 +1,12 @@
-//refer your notes to revise it again;
+/* approach=>
+        DFS Traversal: Use DFS to explore the graph, ensuring that all vertices are visited in depth-first order.
+        Stack for Topological Order: As nodes complete their DFS exploration, push them onto a stack, ensuring the topological order is maintained.
+        Topological Order Extraction: After DFS completes for all vertices, pop elements from the stack to get the correct topological order.
+        Visited Array: Track visited nodes with a boolean array to prevent revisiting and redundant DFS calls.
+*/
+
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
 //*************************************************************************************************************************************
 class Solution
 {
