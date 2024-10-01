@@ -1,12 +1,11 @@
-// Algo Used: Topological sort using BFS (also know as Kahn's algo)
-// Steps for solution:
-// Step 1:Converting our input into Adj
-// Step 2: Marking indegree of nodes
-// Step 3: Getting the nodes with 0 in-degree and adding it in queue
-// Step 4: Our Main BFS until !q.isEmpty() -> keep on unmarking the indegrees of a node -> if in-degree becomes 0 then add it in queue and when it turns come in next iteration, it willl be added in the topo list.
-// Time Complexity: O(V+E), where V = no. of nodes and E = no. of edges. This is a simple BFS algorithm.
-// Space Complexity: O(N) + O(N) ~ O(2N), O(N) for the indegree array, and O(N) for the queue data structure used in BFS(where N = no.of nodes). Extra O(N) for storing the topological sorting.
-// Total ~ O(3N).
+/* approach=>
+        Adjacency List Creation: Convert the prerequisites into an adjacency list to represent the directed graph.
+        In-degree Array: Track the number of incoming edges for each course (node) to identify the starting points for topological sorting.
+        Queue for Zero In-degree: Perform BFS by adding nodes with zero in-degree to the queue and reducing in-degrees for their connected nodes.
+        Cycle Detection: If the topological sort list contains all courses, return true (no cycle), else return false (cycle exists).
+*/
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
