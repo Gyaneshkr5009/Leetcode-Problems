@@ -1,3 +1,13 @@
+/*
+    DFS with Path Tracking: Use DFS to explore nodes while keeping track of the current path using an additional pathVisited array.
+    Cycle Condition: A cycle is detected if a node is revisited and it exists in the current DFS path (pathVisited is true).
+    Path Backtracking: Reset pathVisited to false after exploring a node to backtrack properly.
+    Visited Array: Maintain a visited array to avoid redundant traversals.
+*/
+
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
+//****************************************************************************************************************************************************
 class Solution {
     // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
