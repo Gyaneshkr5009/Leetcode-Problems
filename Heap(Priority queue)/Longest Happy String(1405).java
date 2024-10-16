@@ -23,7 +23,7 @@ Complexity:
 //*****************************************************************************************************************************************************************
 class Solution {
     public String longestDiverseString(int a, int b, int c) {
-        //making a PriorityQueue to store character and their occurence;
+        //making a max PriorityQueue to store character and their occurence;
         PriorityQueue<Pair> pq=new PriorityQueue<>((x,y) -> y.freq-x.freq);
 
         if(a>0){
