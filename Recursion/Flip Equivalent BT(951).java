@@ -3,8 +3,17 @@
 
 //approach => we have to figure out is the nodes in  root1 and root 2 are fliped for finding out;
 /*
-    step1 : we have to check for the left one first through recursion 
-    step 2: check for the right side if both return true else return false;
+    ==>Base Case:
+
+    If both trees are null, they are equivalent.
+    If one tree is null and the other is not, they are not equivalent.
+    If the root values of both trees are not equal, they are not equivalent.
+
+    =>Recursive Check:
+
+    Left and Right Subtrees: Recursively check if the left subtree of root1 is equivalent to either the left or right subtree of root2.
+    Right and Left Subtrees: Recursively check if the right subtree of root1 is equivalent to either the right or left subtree of root2.
+    Both Conditions: Return true only if both the left and right subtree checks are true.
 */
 //******************************************************************(recursion)***************************************************************
 class Solution {
