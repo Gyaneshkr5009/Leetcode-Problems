@@ -1,0 +1,93 @@
+class Solution {
+    static int spanningTree(int V, int E, List<List<int[]>> adj) {
+        if(adj==null || adj.size()==0) return 0;
+        
+        ArrayList<Edge> edges=new ArrayList<>();
+        for(int i=0 ;i<V;i++){
+            for(int j=0;j<adj.get(i).size();j++){
+                int adjNode=adj.get(i).get(j)[0];
+                int wt=adj.get(i).get(j)[1];
+                int node=i;
+                edges.add(new Edge(wt , i , adjNode));
+            }
+        }
+        DisjointSet ds=new DisjointSet(V);
+        
+        Collections.sort(edges , (x,y) -> x.weight-y.weight);
+        int mst=0;
+        
+        for(int i=0;i< edges.size();i++){
+            int wt=edges.get(i).weight;
+            int u=edges.get(i).parent;
+            int v=edges.get(i).node;
+            
+            if(ds.findUPar(u)!= ds.findUPar(v)){
+                mst+=wt;
+                ds.unionByRank(u,v);
+            }
+        }
+        
+        return mst;
+    }
+}
+
+class Edge{
+    int weight , node , parent;
+    Edge(int weight,int parent, int node){
+        this.weight=weight;
+        this.parent=parent;
+        this.node=node;
+        
+    }
+}
+
+class DisjointSet{
+    ArrayList<Integer> parent =new ArrayList<>(), rank=new ArrayList<>() , size=new ArrayList<>();
+    
+    public DisjointSet(int n) {
+        for (int i = 0; i <= n; i++) {
+            rank.add(0);
+            parent.add(i);
+            size.add(1);
+        }
+    }
+    
+    public int findUPar(int node){
+        if(node==parent.get(node)) return node;
+        int ulp=findUPar(parent.get(node));
+        parent.set(node , ulp);
+        return parent.get(node);
+    }
+    
+    public void unionByRank(int u ,int v){
+        int ulp_u=findUPar(u);
+        int ulp_v=findUPar(v);
+        //if both ultimate parent are same return nothing;
+        if(ulp_u==ulp_v) return ;
+        if(rank.get(ulp_u) < rank.get(ulp_v)){
+            parent.set(ulp_u , ulp_v);
+        }
+        else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+            parent.set(ulp_v, ulp_u);
+        } 
+        else {
+            parent.set(ulp_v, ulp_u);
+            int rankU = rank.get(ulp_u);
+            rank.set(ulp_u, rankU + 1);
+        }
+    }
+    
+    public void unionBySize(int u, int v){
+        int ulp_u=findUPar(u);
+        int ulp_v=findUPar(v);
+        if(ulp_u==ulp_v) return ;
+        if (size.get(ulp_u) < size.get(ulp_v)) {
+            parent.set(ulp_u, ulp_v);
+            size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+        }
+        else{
+            parent.set(ulp_v, ulp_u);
+            size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+        }
+    }
+}
