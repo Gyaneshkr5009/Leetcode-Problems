@@ -83,3 +83,64 @@ class DisjointSet{
         }
     }
 }
+
+//**************************************************(Optimized approach inspired from DisjointSet)***************************************************
+
+class Solution {
+    int[] parent;
+    int[] rank;
+    public int makeConnected(int n, int[][] connections) {
+        //edge cases;
+        if(connections==null || connections.length==0) return -1;
+        if (connections.length < n - 1) {
+            return -1;
+        }
+
+        // Initialize the union-find structure
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i; // Each node is its own parent initially
+            rank[i] = 0;   // Rank is initialized to 0
+        }
+        // Union the connections
+        for (int[] connection : connections) {
+            union(connection[0], connection[1]);
+        }
+
+        // Count the number of unique components
+        int components = 0;
+        for (int i = 0; i < n; i++) {
+            if (find(i) == i) {
+                components++; // Count root nodes
+            }
+        }
+
+        // The number of moves needed is components - 1
+        return components - 1;
+
+    }
+    private int find(int node) {
+        if (parent[node] != node) {
+            parent[node] = find(parent[node]); // Path compression
+        }
+        return parent[node];
+    }
+    private void union(int node1, int node2) {
+        int root1 = find(node1);
+        int root2 = find(node2);
+        
+        if (root1 != root2) {
+            // Union by rank
+            if (rank[root1] > rank[root2]) {
+                parent[root2] = root1;
+            } else if (rank[root1] < rank[root2]) {
+                parent[root1] = root2;
+            } else {
+                parent[root2] = root1;
+                rank[root1]++;
+            }
+        }
+    }
+}
+
