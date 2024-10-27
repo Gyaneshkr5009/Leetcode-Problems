@@ -39,7 +39,7 @@ class DisjointSet{
     ArrayList<Integer> parent =new ArrayList<>() , rank=new ArrayList<>() ,size=new ArrayList<>();
     //v tends to no of nodes;
     DisjointSet(int V){
-        for(int i=0;i<V ;i++){
+        for(int i=0;i<=V ;i++){
             parent.add(i);
             rank.add(0);
             size.add(1);
