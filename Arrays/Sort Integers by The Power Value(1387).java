@@ -1,3 +1,5 @@
+//time Complexity:O(n⋅logm+nlogn)
+//space complexity:O(n)
 //*******************************************************************(min Heap)**********************************************************************
 class Solution {
     public int getKth(int lo, int hi, int k) {
