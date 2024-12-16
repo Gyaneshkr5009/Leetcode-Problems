@@ -1,5 +1,5 @@
 //time complexity:O(n*m);
-//space complexity:O(original.length);
+//space complexity:O(original.length)
 //*********************************************************************(Brute Force)*****************************************************************
 class Solution {
     public int[][] construct2DArray(int[] original, int m, int n) {
