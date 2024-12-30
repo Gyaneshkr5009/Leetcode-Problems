@@ -21,3 +21,23 @@ class Solution {
         return result;
     }
 }
+//*************************************************************************(not optimized approach [Brute-Force Approach])**********************************************************
+class Solution {
+    public int result=0 , mod = 1000000007;
+    public int countGoodStrings(int low, int high, int zero, int one) {
+        if(low>high) return 0;
+        helper(low , high , zero , one , 0);
+        System.out.println(result);
+        return result;
+    }
+    private void helper(int low, int high , int zero , int one , int currentLength){
+        if(currentLength>high) return;
+        if(currentLength >=low){
+            result=(result+1)%mod;
+        }
+        // appending '1'
+        helper(low, high , zero , one , currentLength+one);
+        //appending'0';
+        helper(low,high,zero , one , currentLength+zero);
+    }
+}
