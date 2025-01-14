@@ -1,9 +1,10 @@
 /*
-    Worst Case: O(N * K)
+    time complexity :Worst Case: O(N * K)
 
     Where:
         N is the length of the input string s.
         K is the maximum number of repetitions for any encoded substring.
+    //space complexity:O(n);
 */
 //**************************************************(Stack && StringBuilder)********************************************
 class Solution {
