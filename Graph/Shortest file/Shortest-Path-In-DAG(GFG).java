@@ -51,7 +51,7 @@ class Solution {
       dist[i] = (int)(1e9);
     }
 
-    dist[0] = 0;
+    dist[st.peek()] = 0;
     while (!st.isEmpty()) {
       int node = st.peek();
       st.pop();
