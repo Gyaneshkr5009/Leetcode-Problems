@@ -1,3 +1,5 @@
+
+//*******************************************(cantor's theorem)*******************************
 class Solution {
     public String findDifferentBinaryString(String[] nums) {
         //000=0 , 001=1 , 010=2 , 011=3 and so on ;
