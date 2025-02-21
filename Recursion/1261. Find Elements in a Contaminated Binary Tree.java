@@ -39,6 +39,34 @@ class FindElements {
     }
 }
 
+///**********************************************(BitSet)*****************************************
+
+class FindElements {
+    TreeNode root;
+    BitSet bs=new BitSet();
+
+    public FindElements(TreeNode root) {
+        this.root=root;
+        root.val=0;
+        helper(root);
+    }
+    private void helper(TreeNode root){
+        bs.set(root.val);
+        if(root.left!=null){
+            root.left.val=root.val*2+1;
+            helper(root.left);
+        }
+        if(root.right!=null){
+            root.right.val=root.val*2+2;
+            helper(root.right);
+        }
+    }
+    
+    public boolean find(int target) {
+        return bs.get(target);
+    }
+}
+
 /**
  * Your FindElements object will be instantiated and called as such:
  * FindElements obj = new FindElements(root);
