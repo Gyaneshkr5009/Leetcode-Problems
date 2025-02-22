@@ -1,3 +1,30 @@
+//*********************************************************************(optimized approach)***********************************
+class Solution {
+    private String[] keypads={
+        "" , "" , "abc", "def" , "ghi" , "jkl" , "mno" , "pqrs" , "tuv" ,"wxyz"
+    };
+    public List<String> letterCombinations(String digits) {
+        List<String> list=new ArrayList<>();
+        if(digits==null || digits.length()==0) return list;
+        StringBuilder sb=new StringBuilder();
+        solve(digits , list , 0 , sb);
+        return list;
+    }
+    private void solve(String digits , List<String> ls , int idx , StringBuilder sb){
+        if(idx >= digits.length()){
+            ls.add(sb.toString());
+            return;
+        }
+        for(char ch:keypads[digits.charAt(idx)-'0'].toCharArray()){
+            sb.append(ch);
+            solve(digits , ls , idx+1 , sb);
+            sb.deleteCharAt(sb.length()-1); //backtrack;
+        }
+    }
+}
+
+
+//*******************************************************************************************************
 class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> list=new ArrayList<>();
