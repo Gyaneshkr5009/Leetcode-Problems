@@ -1,3 +1,4 @@
+//*******************************************(recursion + memoization)*************************
 class Solution {
     public int numDistinct(String s, String t) {
         int n=s.length() , m=t.length();
@@ -15,5 +16,27 @@ class Solution {
             return dp[idx1][idx2]=helper(s,t ,idx1-1 , idx2 , dp) + helper(s, t, idx1-1 , idx2-1 , dp);
         }
         else return dp[idx1][idx2]=helper(s,t,idx1-1 , idx2 , dp);
+    }
+}
+//*************************************************(tabulation)************************************
+class Solution {
+    public int numDistinct(String s, String t) {
+        int n=s.length() , m=t.length();
+        char[] arr1=s.toCharArray();
+        char[] arr2=t.toCharArray();
+        int[][] dp=new int[n+1][m+1];
+        for(int i=0;i<=n;i++){
+            dp[i][0]=1;
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                //if both matches
+                if(arr1[i-1]==arr2[j-1]){
+                    dp[i][j]=dp[i-1][j]+dp[i-1][j-1];
+                }
+                else dp[i][j]=dp[i-1][j];
+            }
+        }
+        return dp[n][m];
     }
 }
