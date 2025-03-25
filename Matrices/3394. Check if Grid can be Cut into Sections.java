@@ -50,3 +50,26 @@ class Solution {
         return false;
     }
 }
+
+//**********************************************(Optimized Approach => (Reducing external space and utilizing same variable)**********
+class Solution {
+    public boolean checkValidCuts(int n, int[][] rectangles) {
+        int m=rectangles.length;
+        return checkCuts(rectangles , m , 0) || checkCuts(rectangles , m , 1);
+    }
+    private boolean checkCuts(int[][] grid , int m , int sortIndex){
+        Arrays.sort(grid , (a,b) -> Integer.compare(a[sortIndex] , b[sortIndex]));
+        int cutCount=0 , lastEnd=grid[0][sortIndex+2];
+        for(int i=1;i<m;i++){
+            if(grid[i][sortIndex] >= lastEnd){
+                cutCount++;
+                if(cutCount==2) return true;
+            }
+            lastEnd=Math.max(lastEnd , grid[i][sortIndex+2]);
+        }
+        return false;
+    }
+}
+
+//time complexity:O(mlogm) for sorting + O(m) for iteration;
+//space complexity:O(2) external stack space for recursion;
