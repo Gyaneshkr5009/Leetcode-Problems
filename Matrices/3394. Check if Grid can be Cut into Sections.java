@@ -1,3 +1,15 @@
+/*
+    Sort rectangles by start coordinates for both X and Y axes to handle overlaps.
+
+    Sweep Line Technique: Iterate through sorted intervals to count non-overlapping segments.
+    
+    Greedy Check: If non-overlapping cuts reach 2 in either X or Y, return true.
+    
+    Update Max End: Extend the last end point dynamically to merge overlaps.
+    
+    Time Complexity: O(m log m) + O(m) = O(m log m) due to sorting and linear scan.
+*/
+//******************************************************************************************************************************
 class Solution {
     public boolean checkValidCuts(int n, int[][] rectangles) {
         int m=rectangles.length;
