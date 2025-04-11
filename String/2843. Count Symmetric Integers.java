@@ -3,7 +3,7 @@ class Solution {
         int cnt=0;
         for(int i=low;i<=high;i++){
             //converting the number into String
-            StringBuilder sb=new StringBuilder(String.valueOf(i));
+            String sb=String.valueOf(i);
             //if digits in a number not divisible by two means not a symmatric , so move on to next number
             if(sb.length()%2!=0) continue;
             int left=0 , right=sb.length()-1;
