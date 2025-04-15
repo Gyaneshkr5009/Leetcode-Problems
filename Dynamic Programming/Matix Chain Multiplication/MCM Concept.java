@@ -35,3 +35,29 @@ public class Solution {
 		return dp[i][j] = (int)min;
 	}
 }
+//**********************************************(tabulation)***********************************
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+	public static int matrixMultiplication(int[] arr , int n) {
+		int[][] dp=new int[n][n];
+		
+		for(int i=1;i<n;i++){
+			dp[i][i]=0;
+		}
+		for(int i=n-1;i>=1;i--){
+			for(int j=i+1;j<n;j++){
+				long min=Long.MAX_VALUE;
+				for(int k=i; k<=j-1 ;k++){
+					long operations = (long)arr[i-1]* arr[k] * arr[j] + dp[i][k] + dp[k+1][j];
+					min=Math.min(min , operations);
+				}
+				dp[i][j]=(int)min;
+			}
+		}
+
+		return dp[1][n-1];
+	}
+}
+
