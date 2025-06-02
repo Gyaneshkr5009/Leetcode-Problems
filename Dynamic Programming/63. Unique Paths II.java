@@ -20,3 +20,34 @@ class Solution {
         return dp[row][col] = right + down;
     }
 }
+//**********************************************************(tabulation algorithm with only 1D dp)************************
+class Solution {
+    public int uniquePathsWithObstacles(int[][] grid) {
+        int m=grid.length , n=grid[0].length;
+        if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) return 0;
+
+        //going further optimization using 1d dp and two variable;
+        int[] dp=new int[n];
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                //base case;
+                if(i==0 && j==0){
+                    dp[0]=1;
+                    continue;
+                }
+                if(grid[i][j] == 1) {
+                    dp[j]=0; //marking that index as 0;
+                    continue;
+                }
+
+                int top=(i>0) ? dp[j] : 0;
+                int left=(j>0) ? dp[j-1] :0;
+
+                dp[j]=top+left;
+            }
+        }
+
+        return dp[n-1];
+    }
+}
