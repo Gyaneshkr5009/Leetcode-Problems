@@ -41,3 +41,29 @@ class Solution {
         return length;
     }
 }
+//*****************************************************************(more optimal)************************************
+class Solution {
+    public int longestBalanced(String s) {
+        int n=s.length();
+        int ans=0;
+
+        for(int i=0;i<n;i++){
+            int[] freq=new int[26];
+            int unique=0;
+            int maxFreq=0;
+            for(int j=i;j<n;j++){
+                //if this is unique number;
+                if(freq[s.charAt(j) - 'a'] == 0){
+                    unique++;
+                }
+                maxFreq=Math.max(maxFreq , ++freq[s.charAt(j)-'a']);
+                int length = j-i+1;
+                if(length == unique*maxFreq){
+                    ans= Math.max(length , ans);
+                }
+            }
+        }
+        return ans;
+    }
+}
+//***************************************************************************(optimised)******************************
